@@ -64,7 +64,6 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    if(isLoggedIn) {
       (async () => {
         try {
           setIsChecking(true);
@@ -84,8 +83,7 @@ function App() {
           setIsChecking(false);
         }
       })();
-    }
-  }, [history, isLoggedIn]);
+  }, [history]);
 
   function handleEditAvatarClick() {
     setEditAvatarPopupState(true);
