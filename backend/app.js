@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const helmet = require('helmet');
 
 const { errors } = require('celebrate');
@@ -28,8 +29,9 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use(limiter);
+app.use(cors());
 app.use(helmet());
+app.use(limiter);
 app.use(express.json());
 
 app.use(requestLogger);
