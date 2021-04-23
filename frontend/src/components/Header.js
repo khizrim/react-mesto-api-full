@@ -25,16 +25,16 @@ function Header(props) {
             }`}
           >
             <Switch>
-              <Route path="/sign-up">
+              <Route path="/signup">
                 <li className="header__menu-item">
-                  <Link to="/sign-in" className="header__menu-link">
+                  <Link to="/signin" className="header__menu-link">
                     Войти
                   </Link>
                 </li>
               </Route>
-              <Route path="/sign-in">
+              <Route path="/signin">
                 <li className="header__menu-item">
-                  <Link to="/sign-up" className="header__menu-link">
+                  <Link to="/signup" className="header__menu-link">
                     Регистрация
                   </Link>
                 </li>

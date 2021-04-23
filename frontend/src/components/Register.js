@@ -77,7 +77,7 @@ function Register(props) {
         >
           {props.submitBtn}
         </button>
-        <Link to="/sign-in" className="form__caption">
+        <Link to="/signin" className="form__caption">
           Уже зарегистрированы? Войти
         </Link>
       </form>

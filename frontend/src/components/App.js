@@ -78,7 +78,7 @@ function App() {
           }
         } catch (err) {
           setIsLoggedIn(false);
-          history.push('/sign-in');
+          history.push('/signin');
         } finally {
           setIsChecking(false);
         }
@@ -197,7 +197,7 @@ function App() {
       .register(password, email)
       .then((res) => {
         if (res) {
-          history.push('/sign-in');
+          history.push('/signin');
           setIsInfoTooltipOpen(true);
           setIsRegisteredSuccessefully(true);
         } else {
@@ -237,7 +237,7 @@ function App() {
     localStorage.removeItem('token');
     setIsBurgerActive(false);
     setIsLoggedIn(false);
-    history.push('/sign-in');
+    history.push('/signin');
   }
 
   function closeAllPopups() {
@@ -266,10 +266,10 @@ function App() {
             onSignOut={handleSignOut}
           />
           <Switch>
-            <Route path="/sign-up">
+            <Route path="/signup">
               <Register onSubmit={handleRegister} submitBtn={buttonState || 'Зарегистрироваться'} />
             </Route>
-            <Route path="/sign-in">
+            <Route path="/signin">
               <Login onSubmit={handleLogin} loginError={loginError} setLoginError={setLoginError} submitBtn={buttonState || 'Войти'} />
             </Route>
             <ProtectedRoute
