@@ -38,48 +38,54 @@ function App() {
   const noScroll = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isConfirmationPopupOpen;
 
   useEffect(() => {
-    (async () => {
-      try {
-        const userData = await api.getUserData();
-        setCurrentUser(userData);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const initialCards = await api.getInitialCards();
-        setCards(initialCards);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        setIsChecking(true);
-        const userToken = localStorage.getItem('token');
-        if (userToken) {
-          const res = await auth.checkToken(userToken);
-          if (res) {
-            setIsLoggedIn(true);
-            history.push('/');
-            setUserEmail(res.data.email);
-          }
+    if(isLoggedIn) {
+      (async () => {
+        try {
+          const userData = await api.getUserData();
+          setCurrentUser(userData);
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        setIsLoggedIn(false);
-        history.push('/sign-in');
-      } finally {
-        setIsChecking(false);
-      }
-    })();
-  }, [history]);
+      })();
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      (async () => {
+        try {
+          const initialCards = await api.getInitialCards();
+          setCards(initialCards);
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      (async () => {
+        try {
+          setIsChecking(true);
+          const userToken = localStorage.getItem('token');
+          if (userToken) {
+            const res = await auth.checkToken(userToken);
+            if (res) {
+              setIsLoggedIn(true);
+              history.push('/');
+              setUserEmail(res.data.email);
+            }
+          }
+        } catch (err) {
+          setIsLoggedIn(false);
+          history.push('/sign-in');
+        } finally {
+          setIsChecking(false);
+        }
+      })();
+    }
+  }, [history, isLoggedIn]);
 
   function handleEditAvatarClick() {
     setEditAvatarPopupState(true);
