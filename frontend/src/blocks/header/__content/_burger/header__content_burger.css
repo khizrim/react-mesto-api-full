@@ -1,0 +1,5 @@
+@media only screen and (max-width: 619px) {
+  .header__content_burger {
+    flex-wrap: wrap-reverse;
+  }
+}

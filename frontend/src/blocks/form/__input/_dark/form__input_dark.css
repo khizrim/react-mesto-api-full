@@ -1,0 +1,9 @@
+.form__input_dark {
+  margin: 10px auto 0;
+  color: #CCCCCC;
+  border-bottom: 2px solid #CCCCCC;
+}
+
+.form__input_dark:focus {
+  border-bottom: 2px solid #fff;
+}

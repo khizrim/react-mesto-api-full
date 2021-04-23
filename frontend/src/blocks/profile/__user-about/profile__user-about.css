@@ -1,0 +1,32 @@
+.profile__user-about {
+  max-width: 420px;
+  margin: 0;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media only screen and (max-width: 919px) {
+  .profile__user-about {
+    max-width: 320px;
+  }
+}
+
+@media only screen and (max-width: 725px) {
+  .profile__user-about {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 619px) {
+  .profile__user-about {
+    max-width: 220px;
+    font-size: 14px;
+    line-height: 17px;
+    transform: translate(0, -5px);
+    -webkit-transform: translate(0, -5px);
+    -moz-transform: translate(0, -5px);
+    -ms-transform: translate(0, -5px);
+    -o-transform: translate(0, -5px);
+  }
+}

@@ -1,0 +1,12 @@
+.form__inputs-container {
+  display: flex;
+  flex-direction: column;
+  height: 316px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 619px) {
+  .form__inputs-container {
+    height: 255px;
+  }
+}

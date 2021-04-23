@@ -1,0 +1,25 @@
+.header__burger-btn {
+  display: none;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  margin-right: 8px;
+  border: none;
+  background: url('../../../images/burger.svg') center no-repeat;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+}
+
+.header__burger-btn:hover {
+  opacity: .6;
+}
+
+@media only screen and (max-width: 619px) {
+  .header__burger-btn {
+    display: flex;
+  }
+}

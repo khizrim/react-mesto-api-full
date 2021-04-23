@@ -1,0 +1,14 @@
+.card__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 79px;
+  padding: 25px 20px;
+  box-sizing: border-box;
+  border-radius: 0 0 10px 10px;
+  background: #fff;
+  -webkit-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  -ms-border-radius: 0 0 10px 10px;
+  -o-border-radius: 0 0 10px 10px;
+}

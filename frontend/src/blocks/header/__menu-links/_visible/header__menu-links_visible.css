@@ -1,0 +1,10 @@
+@media only screen and (max-width: 619px) {
+  .header__menu-links_visible {
+    display: flex;
+    padding: 12px 0;
+    visibility: visible;
+    overflow: visible;
+    height: auto;
+    opacity: 1;
+  }
+}

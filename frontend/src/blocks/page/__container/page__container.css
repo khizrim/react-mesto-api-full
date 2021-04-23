@@ -1,0 +1,21 @@
+.page__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  max-width: 882px;
+  margin: auto;
+  padding: 0 19px;
+}
+
+@media only screen and (max-width: 919px) {
+  .page__container {
+    max-width: 582px;
+  }
+}
+
+@media only screen and (max-width: 619px) {
+  .page__container {
+    max-width: 282px;
+  }
+}

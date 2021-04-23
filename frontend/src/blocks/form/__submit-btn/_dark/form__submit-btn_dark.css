@@ -1,0 +1,5 @@
+.form__submit-btn_dark {
+  flex-shrink: 0;
+  color: #000;
+  background: #fff;
+}

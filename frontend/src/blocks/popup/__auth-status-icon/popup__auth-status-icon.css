@@ -1,0 +1,9 @@
+.popup__auth-status-icon {
+  margin: 24px auto;
+}
+
+@media only screen and (max-width: 619px) {
+  .popup__auth-status-icon {
+    margin: 32px auto;
+  }
+}

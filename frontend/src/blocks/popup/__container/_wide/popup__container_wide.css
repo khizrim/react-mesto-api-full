@@ -1,0 +1,6 @@
+@media only screen and (max-width: 619px) {
+  .popup__container_wide {
+    width: 280px;
+    padding: 18px;
+  }
+}

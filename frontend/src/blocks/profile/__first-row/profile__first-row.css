@@ -1,0 +1,4 @@
+.profile__first-row {
+  display: flex;
+  align-items: baseline;
+}

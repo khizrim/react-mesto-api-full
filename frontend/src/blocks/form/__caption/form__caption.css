@@ -1,0 +1,17 @@
+.form__caption {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 17px;
+  transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+}
+
+.form__caption:hover {
+  opacity: 0.6;
+}
