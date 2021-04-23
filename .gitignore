@@ -9,10 +9,14 @@ node_modules
 # Optional npm cache directory
 .npm
 
+# Production
+build
+
 # Optional REPL history
 .DS_Store
 .idea
 .vscode
+.eslintcache
 
 # Env
 .env
