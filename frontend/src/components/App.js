@@ -28,17 +28,23 @@ function App() {
   const [isConfirmationPopupOpen, setConfirmationPopupState] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isBurgerActive, setIsBurgerActive] = useState(false);
-  const [isRegisteredSuccessefully, setIsRegisteredSuccessefully] = useState(false);
+  const [isRegisteredSuccessefully, setIsRegisteredSuccessefully] = useState(
+    false
+  );
   const [loginError, setLoginError] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
   const [userEmail, setUserEmail] = useState('');
   const [buttonState, setButtonState] = useState('');
 
-  const noScroll = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isConfirmationPopupOpen;
+  const noScroll =
+    isEditAvatarPopupOpen ||
+    isEditProfilePopupOpen ||
+    isAddPlacePopupOpen ||
+    isConfirmationPopupOpen;
 
   useEffect(() => {
-    if(isLoggedIn) {
+    if (isLoggedIn) {
       (async () => {
         try {
           const userData = await api.getUserData();
@@ -51,11 +57,11 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    if(isLoggedIn) {
+    if (isLoggedIn) {
       (async () => {
         try {
           const initialCards = await api.getInitialCards();
-          setCards(initialCards);
+          setCards(initialCards.reverse());
         } catch (err) {
           console.log(err);
         }
@@ -64,25 +70,25 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-      (async () => {
-        try {
-          setIsChecking(true);
-          const userToken = localStorage.getItem('token');
-          if (userToken) {
-            const res = await auth.checkToken(userToken);
-            if (res) {
-              setIsLoggedIn(true);
-              history.push('/');
-              setUserEmail(res.data.email);
-            }
+    (async () => {
+      try {
+        setIsChecking(true);
+        const userToken = localStorage.getItem('token');
+        if (userToken) {
+          const res = await auth.checkToken(userToken);
+          if (res) {
+            setIsLoggedIn(true);
+            setUserEmail(res.email);
+            history.push('/');
           }
-        } catch (err) {
-          setIsLoggedIn(false);
-          history.push('/signin');
-        } finally {
-          setIsChecking(false);
         }
-      })();
+      } catch (err) {
+        setIsLoggedIn(false);
+        history.push('/signin');
+      } finally {
+        setIsChecking(false);
+      }
+    })();
   }, [history]);
 
   function handleEditAvatarClick() {
@@ -108,11 +114,13 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     (async () => {
       try {
         const likedCard = await api.changeCardLikeStatus(card._id, isLiked);
-        const newCards = cards.map((c) => (c._id === card._id ? likedCard : c));
+        const newCards = cards.map((c) =>
+          c._id === card._id ? likedCard.card : c
+        );
         setCards(newCards);
       } catch (err) {
         console.log(err);
@@ -208,9 +216,9 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
-      .finally (() => {
-        handleLoading(false)
-      })
+      .finally(() => {
+        handleLoading(false);
+      });
   }
 
   function handleLogin(password, email) {
@@ -218,18 +226,18 @@ function App() {
     auth
       .login(password, email)
       .then((res) => {
-        setIsLoggedIn(true);
-        setUserEmail(email);
         localStorage.setItem('token', res.token);
+        setUserEmail(email);
+        setIsLoggedIn(true);
         history.push('/');
       })
       .catch((err) => {
         setLoginError(true);
         console.log(err);
       })
-      .finally (() => {
-        handleLoading(false)
-      })
+      .finally(() => {
+        handleLoading(false);
+      });
   }
 
   function handleSignOut(e) {
@@ -267,10 +275,18 @@ function App() {
           />
           <Switch>
             <Route path="/signup">
-              <Register onSubmit={handleRegister} submitBtn={buttonState || 'Зарегистрироваться'} />
+              <Register
+                onSubmit={handleRegister}
+                submitBtn={buttonState || 'Зарегистрироваться'}
+              />
             </Route>
             <Route path="/signin">
-              <Login onSubmit={handleLogin} loginError={loginError} setLoginError={setLoginError} submitBtn={buttonState || 'Войти'} />
+              <Login
+                onSubmit={handleLogin}
+                loginError={loginError}
+                setLoginError={setLoginError}
+                submitBtn={buttonState || 'Войти'}
+              />
             </Route>
             <ProtectedRoute
               path="/"

@@ -1,7 +1,6 @@
 class Api {
-  constructor(baseUrl, token) {
+  constructor(baseUrl) {
     this._baseUrl = baseUrl;
-    this._token = token;
   }
 
   _getResponseData(res) {
@@ -12,28 +11,28 @@ class Api {
   }
 
   async getUserData() {
-    const res = await fetch(`${this._baseUrl}users/me`, {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
       headers: {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
     return this._getResponseData(res);
   }
 
   async getInitialCards() {
-    const res = await fetch(`${this._baseUrl}cards`, {
+    const res = await fetch(`${this._baseUrl}/cards`, {
       headers: {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
     return this._getResponseData(res);
   }
 
   async editUserData({ name, about }) {
-    const res = await fetch(`${this._baseUrl}users/me`, {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -45,10 +44,10 @@ class Api {
   }
 
   async editUserPic({ link }) {
-    const res = await fetch(`${this._baseUrl}users/me/avatar`, {
+    const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -59,30 +58,30 @@ class Api {
   }
 
   async changeCardLikeStatus(id, isLiked) {
-    const res = await fetch(`${this._baseUrl}cards/likes/${id}`, {
+    const res = await fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: isLiked ? 'DELETE': 'PUT',
       headers: {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
     return this._getResponseData(res);
   }
 
   async removeCard(id) {
-    const res = await fetch(`${this._baseUrl}cards/${id}`, {
+    const res = await fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
     return this._getResponseData(res);
   }
 
   async addCard({ name, link }) {
-    const res = await fetch(`${this._baseUrl}cards`, {
+    const res = await fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this._token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -95,8 +94,7 @@ class Api {
 }
 
 const api = new Api(
-  'https://mesto.nomoreparties.co/v1/cohort-19/',
-  'eda43623-18db-4cfe-8b09-82de16371212'
+  'https://api.mesto.khizrim.ru',
 );
 
 export default api;

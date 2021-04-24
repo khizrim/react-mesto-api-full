@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "deploy": "scp -r ./* khizrim@178.154.214.174:/home/khizrim/backend"
+    "deploy": "rsync -r --exclude 'node_modules' ./* khizrim@178.154.214.174:/home/khizrim/backend"
   },
   "author": "Khizri Makhmudov",
   "license": "ISC",

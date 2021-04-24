@@ -98,7 +98,7 @@ module.exports.editUser = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError('Пользователь c указанным ID не найден');
     })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (
         err.kind === 'ObjectId'
@@ -127,7 +127,7 @@ module.exports.editUserAvatar = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError('Пользователь c указанным ID не найден');
     })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (
         err.kind === 'ObjectId'
